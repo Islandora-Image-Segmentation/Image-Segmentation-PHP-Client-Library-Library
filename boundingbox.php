@@ -1,4 +1,4 @@
-<?php
+
 class BoundingBox{
 public float $upper_left_x;
 public float $upper_left_y;
@@ -17,5 +17,3 @@ public function __construct(float $upper_left_x, float $upper_left_y, float $low
 //$box = new BoundingBox(4.1, 5.1, 2.0, 3.1);
 //echo $box->upper_left_x;
 //echo "\n"
-
-?>
