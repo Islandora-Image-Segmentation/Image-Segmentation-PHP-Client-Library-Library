@@ -1,5 +1,5 @@
 <?php
-class segmentationresponse{
-    private $image_base64 = str;
+class SegmentationRequest{
+    public string $image_base64;
 } 
 ?>

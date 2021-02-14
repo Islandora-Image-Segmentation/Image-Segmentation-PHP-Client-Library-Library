@@ -1,9 +1,9 @@
 <?php
-class segmentationresponse{
+class SegmentationResponse{
    
-    private $status_code = int;
-    private $error_message = str;
-    private $segment_count = Optional[int];
-    private $segments = Optional[array(extractedsegment.class_implements)];
+    public int $status_code;
+    public string $error_message;
+    public ?int $segment_count;
+    public ?array $segments = array(ExtractedSegment);
 } 
 ?>
