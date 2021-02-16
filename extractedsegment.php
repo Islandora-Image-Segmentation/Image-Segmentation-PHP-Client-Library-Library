@@ -1,5 +1,5 @@
-
- include ("BoundingBox.php");
+<?php
+include './BoundingBox.php';
 class ExtractedSegment{
     public string $ocr_text;
     public BoundingBox $bounding_box;
@@ -22,4 +22,4 @@ $bounding_box = new BoundingBox(12,3,4,4);
 echo $bounding_box->upper_left_x;
 echo "\n";
 echo $embedding[1];
-
+?>

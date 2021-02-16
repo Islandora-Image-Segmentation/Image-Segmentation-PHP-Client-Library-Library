@@ -1,5 +1,5 @@
-
- include ("ExtractedSegment.php");
+<?php
+ require ("ExtractedSegment.php");
 class SegmentationResponse{
    
     public int $status_code;
@@ -15,4 +15,4 @@ class SegmentationResponse{
         
     }
 } 
-
+?>
