@@ -12,4 +12,4 @@ return $base64; //returns an image encoded to base 64
 }
 
 imagetobase64($imageObject); // testing method
-?>
+?> //

@@ -1,6 +1,6 @@
 <?php
 class BoundingBox{
-public  $upper_left_x;
+public  $upper_left_x; //
 public  $upper_left_y;
 public  $lower_right_x;
 public  $lower_right_y;
