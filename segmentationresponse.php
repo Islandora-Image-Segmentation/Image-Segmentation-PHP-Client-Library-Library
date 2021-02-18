@@ -14,5 +14,14 @@ class SegmentationResponse{
         $this->segments = $segments;
         
     }
+
+    public function getStatusCode() {
+        return (int)$this->status_code;
+    }
+
+    public function getErrorMsg() {
+        return (string)$this-$this->error_message;
+    }
+
 } 
 ?>

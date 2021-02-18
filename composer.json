@@ -2,6 +2,7 @@
     "require": {
        "guzzlehttp/guzzle": "^7.0",
       "ext-imagick": "*",
-      "ext-gmagick": "*"
+      "ext-gmagick": "*",
+      "ext-gd": "*"
     }
  }
