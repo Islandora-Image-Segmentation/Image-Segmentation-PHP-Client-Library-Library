@@ -18,4 +18,4 @@ $filename = '/Users/remahwalidbadr/Newspaper-Navigator-API-PHP-Client-Library/im
 $imageObject = createImageObject($filename); // setting variable to image object
 $box = new BoundingBox(0, 0, 70, 80); // testing with variables
 cropImage($imageObject, $box); // crop method takes in an image object and a boundingbox object
-?> //
+?>
