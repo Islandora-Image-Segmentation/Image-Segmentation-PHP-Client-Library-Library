@@ -1,5 +1,6 @@
+<?php
 use GuzzleHttp\Client;
-$API_URL = "http//localhost:8000/api"
+$API_URL = "http//localhost:8000/api";
 $client = new Client([
     // Base URI is used with relative requests
     'base_uri' => $API_URL,
@@ -21,3 +22,4 @@ function segmentImage($imageUrl)
         new RequestException('Error Communicating with Server');
     }
 }
+?>
