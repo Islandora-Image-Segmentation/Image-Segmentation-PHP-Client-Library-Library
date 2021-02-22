@@ -2,7 +2,7 @@
 require_once "schemas.php";
 
 
-function imageToBase64(Imagick $imageObj): str
+function imageToBase64(Imagick $imageObj): string
 { 
     return base64_encode($imageObj->getImageBlob()); 
 }
