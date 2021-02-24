@@ -12,20 +12,24 @@ class BoundingBox{
         $this->lower_right_y = $lower_right_y;
     }
     
-    public function getULX() {
-        return (float)$this->upper_left_x;
+    public function getULX(): float
+    {
+        return $this->upper_left_x;
     }
 
-    public function getULY() {
-        return (float)$this->upper_left_y;
+    public function getULY(): float 
+    {
+        return $this->upper_left_y;
     }
 
-    public function getLRX() {
-        return (float)$this->lower_right_x;
+    public function getLRX(): float 
+    {
+        return $this->lower_right_x;
     }
 
-    public function getLRY() {
-        return (float)$this->lower_right_y;
+    public function getLRY(): float 
+    {
+        return $this->lower_right_y;
     }
 }
 
@@ -45,24 +49,29 @@ class ExtractedSegment{
         $this->confidence = $confidence;
     }
 
-    public function getOCRText() {
-        return (string)$this->ocr_text;
+    public function getOcrText(): string
+    {
+        return $this->ocr_text;
     }
 
-    public function getBoundingBox() {
-        return BoundingBox::$this->bounding_box;
+    public function getBoundingBox(): BoundingBox
+    {
+        return $this->bounding_box;
     }
 
-    public function getEmbedding() {
-        return (array)$this->embedding;
+    public function getEmbedding(): array
+    {
+        return $this->embedding;
     }
 
-    public function getClassification() {
-        return (string)$this->classification;
+    public function getClassification(): string
+    {
+        return $this->classification;
     }
 
-    public function getConfidence() {
-        return (float)$this->confidence;
+    public function getConfidence(): float 
+    {
+        return $this->confidence;
     }
 }
 
@@ -73,10 +82,6 @@ class SegmentationRequest{
     public function __construct(string $image_base64) {
         $this->image_base64 = $image_base64;
     }
-
-    public function getImg64() {
-        return (string)$this->image_base64;
-    }
 }
 
 
@@ -84,7 +89,7 @@ class SegmentationResponse{
     public $status_code;
     public $error_message;
     public $segment_count;
-    public $segments = array(ExtractedSegment);
+    public $segments = array();
     
     public function __construct(int $status_code, string $error_message, ?int $segment_count, ?array $segments) {
         $this->status_code = $status_code;
@@ -94,12 +99,24 @@ class SegmentationResponse{
         
     }
 
-    public function getStatusCode() {
-        return (int)$this->status_code;
+    public function getStatusCode(): int
+    {
+        return $this->status_code;
     }
 
-    public function getErrorMsg() {
-        return (string)$this-$this->error_message;
+    public function getErrorMessage(): string 
+    {
+        return $this->error_message;
+    }
+
+    public function getSegmentCount(): int
+    {
+        return $this->segment_count;
+    }
+
+    public function getSegments(): array
+    {
+        return $this->segments;
     }
 } 
 ?>
