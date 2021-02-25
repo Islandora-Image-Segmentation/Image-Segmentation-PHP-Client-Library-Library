@@ -17,7 +17,7 @@ class SegmentationClient
         $this->httpClient = new Client(["base_uri" => $base_uri, "timeout" => $timeout]);
     }
 
-    public function segmentBase64(string $base64)
+    public function segmentBase64(string $base64): SegmentationResponse
     {
         $response = $this->sendJsonRequest("segment_base64", ["image_base64" => $base64]);
         echo $response;
@@ -25,14 +25,14 @@ class SegmentationClient
     }
 
 
-    public function segmentUrl(string $url)
+    public function segmentUrl(string $url): SegmentationResponse
     {
         $response = $this->sendJsonRequest("segment_url", ["image_url" => $url]);
         echo $response;
         //return new SegmentationResponse();
     }
 
-    public function segmentImagick(Imagick $image)
+    public function segmentImagick(Imagick $image): SegmentationResponse
     {
         $response = $this->sendMultipartRequest("segment_formdata", $image->__toString());
         echo $response;
@@ -40,20 +40,19 @@ class SegmentationClient
 
     }
 
-    public function segmentFile(string $filepath)
+    public function segmentFile(string $filepath): SegmentationResponse
     {
         $response = $this->sendMultipartRequest("segment_formdata", file_get_contents($filepath));
         echo $response;
     }
 
-    private function sendJsonRequest(string $endpoint, array $json): string
+    private function sendJsonRequest(string $endpoint, array $json)
     {
         $response = $this->httpClient->request('POST', $this->base_uri . $endpoint, ['json' => $json]);
-        // should convert to SegmentationResponse here
-        return $response->getBody();
+        return $this->parseResponse($response->getBody());
     }
 
-    private function sendMultipartRequest(string $endpoint, string $file_bytes): string
+    private function sendMultipartRequest(string $endpoint, string $file_bytes)
     {
         $response = $this->httpClient->request('POST', $this->base_uri . $endpoint, [
             'multipart' => [
@@ -64,17 +63,36 @@ class SegmentationClient
                 ],
             ],
         ]);
-        // should convert to SegmentationResponse here
-        return $response->getBody();
+        return $this->parseResponse($response->getBody());
+    }
+
+    private function parseResponse(string $json) 
+    {
+        $decoded_object = json_decode($json);
+        $segments = array();
+
+        foreach ($decoded_object->segments as &$segment) 
+        {
+            $bounding_box = new BoundingBox($segment->upper_left_x, 
+                                            $segment->upper_left_y, 
+                                            $segment->lower_right_x, 
+                                            $segment->lower_right_y);
+
+            $extracted_segment = new ExtractedSegment($segment->ocr_text, 
+                                                      $bounding_box, 
+                                                      $segment->embedding, 
+                                                      $segment->classification, 
+                                                      $segment->confidence);
+                                                      
+            array_push($segments, $extracted_segment);
+        }
+
+        return new SegmentationResponse($decoded_object->status_code, 
+                                        $decoded_object->error_message, 
+                                        $decoded_object->segment_count, 
+                                        $segments);
     }
 }
-
-$client = new SegmentationClient();
-$base64 = imageToBase64(new Imagick("./test.png"));
-$client->segmentUrl("https://www.gravatar.com/avatar/a6931c71023665f96eb121b700e4ff49?s=328&d=identicon&r=PG&f=1");
-$client->segmentFile("./test.png");
-$client->segmentBase64($base64);
-$client->segmentImagick(new Imagick("./test.png"));
 
 ?>
 
