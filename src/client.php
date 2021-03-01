@@ -19,31 +19,23 @@ class SegmentationClient
 
     public function segmentBase64(string $base64): SegmentationResponse
     {
-        $response = $this->sendJsonRequest("segment_base64", ["image_base64" => $base64]);
-        echo $response;
-        //return new SegmentationResponse();
+        return $this->sendJsonRequest("segment_base64", ["image_base64" => $base64]);
     }
 
 
     public function segmentUrl(string $url): SegmentationResponse
     {
-        $response = $this->sendJsonRequest("segment_url", ["image_url" => $url]);
-        echo $response;
-        //return new SegmentationResponse();
+        return $this->sendJsonRequest("segment_url", ["image_url" => $url]);
     }
 
     public function segmentImagick(Imagick $image): SegmentationResponse
     {
-        $response = $this->sendMultipartRequest("segment_formdata", $image->__toString());
-        echo $response;
-        //return new SegmentationResponse();
-
+        return $this->sendMultipartRequest("segment_formdata", $image->__toString());
     }
 
     public function segmentFile(string $filepath): SegmentationResponse
     {
-        $response = $this->sendMultipartRequest("segment_formdata", file_get_contents($filepath));
-        echo $response;
+        return $this->sendMultipartRequest("segment_formdata", file_get_contents($filepath));
     }
 
     private function sendJsonRequest(string $endpoint, array $json)
@@ -59,7 +51,7 @@ class SegmentationClient
                 [
                     'name'     => 'image_file',
                     'contents' => $file_bytes,
-                    'filename' => "test.png"
+                    'filename' => "image.png"
                 ],
             ],
         ]);
@@ -70,13 +62,12 @@ class SegmentationClient
     {
         $decoded_object = json_decode($json);
         $segments = array();
-
         foreach ($decoded_object->segments as &$segment) 
         {
-            $bounding_box = new BoundingBox($segment->upper_left_x, 
-                                            $segment->upper_left_y, 
-                                            $segment->lower_right_x, 
-                                            $segment->lower_right_y);
+            $bounding_box = new BoundingBox($segment->bounding_box->upper_left_x, 
+                                            $segment->bounding_box->upper_left_y, 
+                                            $segment->bounding_box->lower_right_x, 
+                                            $segment->bounding_box->lower_right_y);
 
             $extracted_segment = new ExtractedSegment($segment->ocr_text, 
                                                       $bounding_box, 
@@ -93,6 +84,5 @@ class SegmentationClient
                                         $segments);
     }
 }
-
 ?>
 
