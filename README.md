@@ -1,5 +1,21 @@
 # Newspaper-Navigator-API-PHP-Client-Library
 
+## How to install with Composer
+You can add this package as a requirement by adding it to your `composer.json` like so:
+```
+{
+   "repositories": [
+       {
+           "type": "vcs",
+           "url": "http://github.com/Islandora-Image-Segmentation/Newspaper-Navigator-API-PHP-Client-Library"
+       }
+   ],
+   "require": {
+       "islandora_image_segmentation/php_client_library": ">=0.1"
+   }
+}
+```
+
 ## Example Usage
 ```
 $client = new SegmentationClient();
