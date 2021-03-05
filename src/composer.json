@@ -1,5 +1,6 @@
 {
-    "require": {
-       "guzzlehttp/guzzle": "^7.2"
-    }
+   "name": "islandora_image_segmentation/php_client_library",
+   "require": {
+      "guzzlehttp/guzzle": "^7.2"
+   }
  }
