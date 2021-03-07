@@ -1,9 +1,6 @@
 <?php
 
 namespace NewspaperNavigator;
-require_once "vendor/autoload.php";
-require_once "schemas.php";
-require_once "utils.php";
 use GuzzleHttp\Client;
 
 class SegmentationClient
