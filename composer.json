@@ -1,15 +1,17 @@
 {
-   "name": "islandora_image_segmentation/php_client_library",
-   "type": "library",
-   "description": "The PHP client library which can be used to interact with the segmentation API.",
-   "homepage": "https://github.com/Islandora-Image-Segmentation/Newspaper-Navigator-API-PHP-Client-Library",
-   "license": "GPLv3",
-   "require": {
-      "guzzlehttp/guzzle": "^7.2",
-      "php": "^7.4.0"
-   },
-   "autoload": {
-      "classmap":
-         ["src/"]
-   }
- }
+  "name": "islandora_image_segmentation/php_client_library",
+  "type": "library",
+  "description": "The PHP client library which can be used to interact with the segmentation API.",
+  "homepage": "https://github.com/Islandora-Image-Segmentation/Newspaper-Navigator-API-PHP-Client-Library",
+  "license": "GPLv3",
+  "require": {
+    "guzzlehttp/guzzle": "^7.2",
+    "php": "^7.4.0"
+  },
+  "autoload": {
+    "classmap": [
+      "src/"
+    ],
+    "files": ["src/utils.php"]
+  }
+}
