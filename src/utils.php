@@ -1,4 +1,6 @@
 <?php
+namespace NewspaperNavigator;
+
 require_once "schemas.php";
 
 
