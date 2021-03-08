@@ -1,7 +1,7 @@
 <?php
 namespace NewspaperNavigator;
 
-function imageToBase64(Imagick $imageObj): string
+function imageToBase64(\Imagick $imageObj): string
 {
     return base64_encode($imageObj->getImageBlob());
 }
