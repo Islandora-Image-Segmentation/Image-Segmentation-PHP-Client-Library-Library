@@ -1,4 +1,5 @@
 <?php
+namespace NewspaperNavigator;
 class BoundingBox{
     public  float $upper_left_x;
     public  float $upper_left_y;
