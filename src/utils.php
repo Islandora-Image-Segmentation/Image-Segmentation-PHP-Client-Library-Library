@@ -21,5 +21,4 @@ function cropImage(\Imagick $imageObj, BoundingBox $box): \Imagick
     return $imageClone;
 }
 
-
 ?>
