@@ -15,8 +15,8 @@ function cropImage(Imagick $imageObj, BoundingBox $box): Imagick
     $imageClone = $imageObj->clone();
     $imageClone->cropImage($width, 
                         $height, 
-                        $box->upper_left_x * $imageObg->getImageWidth(), 
-                        $box->upper_left_y * $imageObg->getImageHeight()
+                        $box->upper_left_x * $imageObj->getImageWidth(), 
+                        $box->upper_left_y * $imageObj->getImageHeight()
                         );
     return $imageClone;
 }
