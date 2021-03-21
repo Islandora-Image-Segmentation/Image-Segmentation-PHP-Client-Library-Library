@@ -1,7 +1,16 @@
 # Newspaper-Navigator-API-PHP-Client-Library
+This is a PHP client library for the Islandora Image Segmentation API that can be found [here](https://github.com/Islandora-Image-Segmentation/Newspaper-Navigator-API). 
 
-## How to install with Composer
-You can add this package as a requirement by adding it to your `composer.json` like so:
+
+## Installation
+ 1. Clone this repo.
+ 2. Ensure you have PHP >= 7.4 installed.
+ 3. Ensure you have ImageMagick and imagick installed.
+ 4. Run `composer install` to install the PHP dependencies.
+ 
+ 
+## How to add as a requirement
+You can add this package as a requirement to your project by adding it to your `composer.json` like so:
 ```
 {
    "repositories": [
@@ -16,7 +25,13 @@ You can add this package as a requirement by adding it to your `composer.json` l
 }
 ```
 
-## Example Usage
+## Example usage
+To use this client library, include it and create a `SegmentationClient` object. The `SegmentationClient` constructor accepts the following parameters:
+
+`public function __construct(string $base_uri="localhost:8000/api/", float $timeout=30.0, string $api_key="")`
+
+This object contains utility methods that will send images to the API for segmentation. You can use a URL, an image file on your computer, a base64 encoded image, or an Imagick object. Here is an example usage:
+
 ```
 $client = new SegmentationClient();
 $base64 = imageToBase64(new Imagick("./test.png"));
