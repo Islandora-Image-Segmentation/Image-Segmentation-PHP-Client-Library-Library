@@ -71,7 +71,8 @@ class SegmentationClient
                                                       $bounding_box, 
                                                       $segment->embedding, 
                                                       $segment->classification, 
-                                                      $segment->confidence);
+                                                      $segment->confidence,
+                                                      $segment->hocr);
                                                       
             array_push($segments, $extracted_segment);
         }
