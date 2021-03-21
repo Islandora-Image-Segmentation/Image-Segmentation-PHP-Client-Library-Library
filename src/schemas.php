@@ -1,10 +1,10 @@
 <?php
 namespace NewspaperNavigator;
 class BoundingBox{
-    public  float $upper_left_x;
-    public  float $upper_left_y;
-    public  float $lower_right_x;
-    public  float$lower_right_y;
+    public float $upper_left_x;
+    public float $upper_left_y;
+    public float $lower_right_x;
+    public float$lower_right_y;
 
     public function __construct(float $upper_left_x,  float $upper_left_y, float $lower_right_x, float $lower_right_y ) {
         $this->upper_left_x = $upper_left_x;
