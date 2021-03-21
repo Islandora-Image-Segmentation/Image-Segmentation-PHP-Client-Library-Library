@@ -8,10 +8,14 @@ class SegmentationClient
     private Client $httpClient;
     private string $base_uri;
     private float $timeout;
+    private string $api_key;
 
-    public function __construct(string $base_uri="localhost:8000/api/", float $timeout=30.0) {
+    public function __construct(string $base_uri="localhost:8000/api/", 
+                                float $timeout=60.0,
+                                string $api_key="") {
         $this->base_uri = $base_uri;
-        $this->time_out = $timeout;
+        $this->timeout = $timeout;
+        $this->api_key = $api_key;
         $this->httpClient = new Client(["base_uri" => $base_uri, "timeout" => $timeout]);
     }
 
@@ -19,7 +23,6 @@ class SegmentationClient
     {
         return $this->sendJsonRequest("segment_base64", ["image_base64" => $base64]);
     }
-
 
     public function segmentUrl(string $url): SegmentationResponse
     {
@@ -38,7 +41,14 @@ class SegmentationClient
 
     private function sendJsonRequest(string $endpoint, array $json)
     {
-        $response = $this->httpClient->request('POST', $this->base_uri . $endpoint, ['json' => $json]);
+        $response = $this->httpClient->request('POST', 
+                                               $this->base_uri . $endpoint, [
+                                                    'json' => $json,
+                                                    'headers'  => [
+                                                        'X-API-KEY' => $this->api_key
+                                                    ]
+                                               ]
+                                            );
         return $this->parseResponse($response->getBody());
     }
 
@@ -50,9 +60,12 @@ class SegmentationClient
                     'name'     => 'image_file',
                     'contents' => $file_bytes,
                     'filename' => "image.png"
-                ],
-            ],
+                ]],
+            'headers' => [
+                    'X-API-KEY' => $this->api_key
+            ]
         ]);
+
         return $this->parseResponse($response->getBody());
     }
 
