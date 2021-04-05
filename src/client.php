@@ -10,7 +10,7 @@ class SegmentationClient
     private float $timeout;
     private string $api_key;
 
-    public function __construct(string $base_uri="localhost:8000/api/", 
+    public function __construct(string $base_uri="localhost:8008/api/", 
                                 float $timeout=60.0,
                                 string $api_key="") {
         $this->base_uri = $base_uri;
