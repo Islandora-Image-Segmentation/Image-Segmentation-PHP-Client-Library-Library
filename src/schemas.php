@@ -1,5 +1,6 @@
 <?php
 namespace NewspaperNavigator;
+
 class BoundingBox{
     public float $upper_left_x;
     public float $upper_left_y;
@@ -11,6 +12,11 @@ class BoundingBox{
         $this->upper_left_y = $upper_left_y;
         $this->lower_right_x = $lower_right_x;
         $this->lower_right_y = $lower_right_y;
+    }
+
+    public function __toString()
+    {
+        return json_encode($this);
     }
 }
 
@@ -31,6 +37,11 @@ class ExtractedSegment{
         $this->confidence = $confidence;
         $this->hocr = $hocr;
     }
+
+    public function __toString()
+    {
+        return json_encode($this);
+    }
 }
 
 
@@ -39,6 +50,11 @@ class SegmentationRequest{
 
     public function __construct(string $image_base64) {
         $this->image_base64 = $image_base64;
+    }
+
+    public function __toString()
+    {
+        return json_encode($this);
     }
 }
 
